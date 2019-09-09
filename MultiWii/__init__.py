@@ -8,20 +8,20 @@ class MultiWii:
         """
         self.com = serial.Serial(SerialPort, BaudRate, timeout=1)
 
-    def send(self, command, data:list=[]):
+    def send(self, command, data:list=[], datatype:str=""):
         size = 2 * ((len(data)) & 0xFF)
         senddata = ['$'.encode('utf-8'), 'M'.encode('utf-8'), command['direction'].encode('utf-8'), size, command['message_id']] + data
-        checksum = 0
-        for i in senddata[3: len(senddata)]:
-            checksum ^= i
+        checksum = self.crc(command['message_id'], size, data, datatype)
         senddata.append(checksum)
-        self.com.write(struct.pack('<3c3B', *senddata))
+        self.com.write(struct.pack('<3c2B'+datatype+'B', *senddata))
         return True
 
-    def crc(self, command, data):
-        size = 2 * ((len(data)) & 0xFF)
-        checksum = size ^ command['message_id']
-        
+    def crc(self, id, size, data, datatype):
+        crc = size ^ id
+        if not len(data) == 0:
+            for i in struct.pack('<'+datatype, data):
+            crc ^= i
+        return crc
 
     def receive(self):
         while True:
