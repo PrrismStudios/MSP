@@ -110,3 +110,4 @@ venv.bak/
 
 # artefacts for Visual Studio Code
 /.vscode/
+*.code-workspace
