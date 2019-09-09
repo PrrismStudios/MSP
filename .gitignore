@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#MacOS files
+*.o
+.DS_Store
+*~
+
+# artefacts for Visual Studio Code
+/.vscode/
