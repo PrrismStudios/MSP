@@ -1,12 +1,16 @@
 "MultiWii: Python MSP communication Library"
 
-import serial, struct
+import serial
+import struct
+
+from .commands import MSPCommands
 
 class MultiWii:
     def __init__(self, SerialPort:str, BaudRate:int=115200, **kwargs):
         """
         Initialise Serial communication with Flight Controller
         Takes Serial Port address(required) and Baud Rate (defaults to 115200) as parameters 
+        All extra parameters passed will be directly passed to the serial port
         """
         self.com = serial.Serial(SerialPort, BaudRate, timeout=1, **kwargs)
 
