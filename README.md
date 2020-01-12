@@ -1,4 +1,4 @@
-# Multi Serial Protocol communication library
+# ~~Multi Serial Protocol communication library~~ Discontinued and incomplete
 This python3 library enables control of MSP based cleanflight/betaflight flight controller boards via UART serial communication. It covers all commands and features listed in the [MultiWii wiki page](http://www.multiwii.com/wiki/index.php?title=Multiwii_Serial_Protocol). 
 Initially tested using a Raspberry pi zero and an SP Racing F3 board communicating via the GPIO rx/tx pins.
 
